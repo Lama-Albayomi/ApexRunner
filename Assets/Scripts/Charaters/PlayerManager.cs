@@ -6,9 +6,9 @@ public class PlayerManager : MonoBehaviour
 {
     public int Min_Draging; // Draging detection
     Rigidbody Body;
+    public Transform HostageGrab;
     private Vector3 FirstTouch;
     private Vector3 SecondTouch;
-    private Vector3 Direction;
     public float Speed;
     private float DeltaX;
     private GameObject Hostage;
@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
             Started=true;
         }
 
-        transform.position += transform.forward * Speed;
+        Body.velocity = transform.forward * Speed;
 
         // Mobile
         if (Input.touchCount>0 &&Input.touches[0].phase==TouchPhase.Moved){
@@ -52,37 +52,11 @@ public class PlayerManager : MonoBehaviour
             //transform.position=new Vector3(transform.position.x+Delta.x /100,transform.position.y,transform.position.z);
         }
 
-        
-        CheckHoldingHostage();
-        CheckThrowingHostage();
-
-    }
-    void CheckHoldingHostage(){
-        if (InputManager.isHoldingHostage && Hostage==null){
-            InputManager.isHoldingHostage=false;
-        }
-        else if (!InputManager.isHoldingHostage && Hostage!=null){
-            Time.timeScale=0.5f;
-        }
-        else if (InputManager.isHoldingHostage && Hostage!=null){
-            Debug.Log("Hold");
-            Time.timeScale=1f;
-        }
-    }
-    void CheckThrowingHostage(){
-        if (InputManager.isThrowingHostage && Hostage==null){
-            InputManager.isThrowingHostage=false;
-        }
-        else if (!InputManager.isHoldingHostage && Hostage!=null){
-            Time.timeScale=0.5f;
-        }
-        else if (InputManager.isHoldingHostage && Hostage!=null){
-            Debug.Log("Hold");
-            Time.timeScale=1f;
-        }
     }
     void HoldAHostage(){
-        Hostage.transform.parent=this.transform;
+        Hostage=LevelManager.Instance.HoldHostage();
+        Instantiate(Hostage,HostageGrab.position,Quaternion.identity,HostageGrab);
+        //Hostage.transform.parent=this.transform;
     }
     void OnCollisionEnter( Collision other){
         if (other.transform.CompareTag("Bullet")){
@@ -92,16 +66,27 @@ public class PlayerManager : MonoBehaviour
             other.gameObject.SetActive(false);
             // endGame
             LevelManager.Instance.PlayerDie();
+
+            Body.velocity=Vector3.zero;
+        }
+        else if (other.transform.CompareTag("Policeman")){
+            
+            animator.SetInteger("State",2);
+            LevelManager.Instance.PlayerDie();
+            Body.velocity=Vector3.zero;
         }
     }
     void OnTriggerStay(Collider other){
         if (other.CompareTag("Policeman")){
-            Hostage=other.gameObject;
+            if (LevelManager.Instance.CanHostage(other.gameObject)){
+                HoldAHostage();
+                other.gameObject.SetActive(false);
+            }
         }
     }
     void OnTriggerExit(Collider other){
         if (other.CompareTag("Policeman")){
-            Hostage=null;
+            
         }
     }
 

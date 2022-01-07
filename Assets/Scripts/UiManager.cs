@@ -5,6 +5,7 @@ using UnityEngine;
 public class UiManager : MonoBehaviour
 {
     public GameObject StartScreen;
+    
     public void StartGame(){
         StartScreen.SetActive(false);
         InputManager.isStart=true;
