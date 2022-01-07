@@ -7,14 +7,26 @@ public class PolicemanManager : MonoBehaviour{
     public Transform ShootPostion;
     private Animator animator;
 
+    
+    public float timeBetweenShoots; // stats time
+    private float Timer;
+
     void Start(){
         animator = GetComponent<Animator>();
-        InvokeRepeating("Shoot",2,3);
+        Timer= timeBetweenShoots;
     }
 
     void Update()
     {
-        
+        if (!InputManager.isStart) return;
+
+        if(Timer<=0){
+            Shoot();
+            // reset timer
+            Timer=timeBetweenShoots;
+        }else{
+            Timer-=Time.deltaTime;;
+        }
     }
     void Shoot (){
         // Play shooting animation

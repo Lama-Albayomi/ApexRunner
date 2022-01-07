@@ -12,15 +12,26 @@ public class PlayerManager : MonoBehaviour
     public float Speed;
     private float DeltaX;
     private GameObject Hostage;
+    private Animator animator;
+    private bool Started;
     void Start(){
         Body= GetComponent<Rigidbody>();
+        animator=GetComponent<Animator>();
     }
 
     void Update(){
-        //if (!InputManager.isStart) return;
-        Body.velocity = transform.forward * Speed;
+        // dont start moving untill the game starts 
+        if (!InputManager.isStart ) return;
+
+        // stop idel animation and call runnin g animation only once;
+        if(!Started){
+            animator.SetInteger("State",1);
+            Started=true;
+        }
+
+        transform.position += transform.forward * Speed;
+
         // Mobile
-        
         if (Input.touchCount>0 &&Input.touches[0].phase==TouchPhase.Moved){
             SecondTouch = Input.touches[0].position;
             DeltaX=transform.position.x+Input.touches[0].deltaPosition.x /100;
@@ -72,6 +83,16 @@ public class PlayerManager : MonoBehaviour
     }
     void HoldAHostage(){
         Hostage.transform.parent=this.transform;
+    }
+    void OnCollisionEnter( Collision other){
+        if (other.transform.CompareTag("Bullet")){
+            // set die animation
+            animator.SetInteger("State",2);
+
+            other.gameObject.SetActive(false);
+            // endGame
+            LevelManager.Instance.PlayerDie();
+        }
     }
     void OnTriggerStay(Collider other){
         if (other.CompareTag("Policeman")){
