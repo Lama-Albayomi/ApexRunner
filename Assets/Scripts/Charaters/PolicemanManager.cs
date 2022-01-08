@@ -6,6 +6,7 @@ public class PolicemanManager : MonoBehaviour{
     public GameObject Bullet;
     public Transform ShootPostion;
     private Animator animator;
+    private bool IsDead = false;
 
     public float Min_timeBetweenShoots;
     public float Max_timeBetweenShoots;
@@ -21,12 +22,14 @@ public class PolicemanManager : MonoBehaviour{
     {
         if (!InputManager.isStart) return;
 
-        if(Timer<=0){
-            Shoot();
-            // reset timer
-            Timer=Random.Range(Min_timeBetweenShoots,Max_timeBetweenShoots);
-        }else{
-            Timer-=Time.deltaTime;;
+        if(!IsDead){
+            if(Timer<=0){
+                Shoot();
+                // reset timer
+                Timer=Random.Range(Min_timeBetweenShoots,Max_timeBetweenShoots);
+            }else{
+                Timer-=Time.deltaTime;;
+            }
         }
     }
     void Shoot (){
@@ -36,5 +39,14 @@ public class PolicemanManager : MonoBehaviour{
         // Play Idle animation
         //animator.SetInteger("State",0);
 
+    }
+    void OnTriggerEnter(Collider other){
+        if (other.transform.CompareTag("Bullet")){
+            // set die animation
+            IsDead=true;
+            animator.SetInteger("State",2);
+            other.gameObject.SetActive(false);
+            this.transform.tag="Untagged";
+        }
     }
 }
