@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
         }
 
         if (InputManager.isThrowingHostage&& !Hostage){
-            InputManager.isHoldingHostage=false;
+            InputManager.isThrowingHostage=false;
         }
     }
     public void PlayerDie(){
@@ -44,7 +44,6 @@ public class LevelManager : MonoBehaviour
 
     public bool CanThrowHostage(){
         if (InputManager.isThrowingHostage){
-            Debug.Log(InputManager.isThrowingHostage);
             Hostage=false;
             return true;
         }

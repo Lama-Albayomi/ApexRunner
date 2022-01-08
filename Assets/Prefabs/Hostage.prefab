@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 3204705730101113072}
   m_Layer: 0
   m_Name: Hostage
-  m_TagString: Hostage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -745,7 +745,7 @@ Animator:
   m_GameObject: {fileID: 6398734992060818514}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e48bd8cc3773ff4081c5f1c22e36c9d, type: 2}
+  m_Controller: {fileID: 9100000, guid: e32473555735f2b4e89b5483a9403882, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -767,9 +767,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c899c16d72ebf6a4fa2d0506b161e4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 7116220931309350048, guid: 63414f52b5269d2479e2248236ac605c, type: 3}
+  Bullet: {fileID: 7116220931309350048, guid: d578adf9addf449419c48864f030b221, type: 3}
   ShootPostion: {fileID: 6994032318978316479}
-  Bullets: 5
+  IsThrown: 0
+  Bullets: 4
   timeBetweenShoots: 2
 --- !u!136 &3204705730101113072
 CapsuleCollider:
@@ -780,7 +781,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 6398734992060818514}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 3
   m_Direction: 1

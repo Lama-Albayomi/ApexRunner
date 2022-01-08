@@ -7,13 +7,14 @@ public class PolicemanManager : MonoBehaviour{
     public Transform ShootPostion;
     private Animator animator;
 
-    
-    public float timeBetweenShoots; // stats time
+    public float Min_timeBetweenShoots;
+    public float Max_timeBetweenShoots;
+    //private float timeBetweenShoots; // stats time
     private float Timer;
 
     void Start(){
         animator = GetComponent<Animator>();
-        Timer= timeBetweenShoots;
+        Timer= Random.Range(Min_timeBetweenShoots,Max_timeBetweenShoots);
     }
 
     void Update()
@@ -23,7 +24,7 @@ public class PolicemanManager : MonoBehaviour{
         if(Timer<=0){
             Shoot();
             // reset timer
-            Timer=timeBetweenShoots;
+            Timer=Random.Range(Min_timeBetweenShoots,Max_timeBetweenShoots);
         }else{
             Timer-=Time.deltaTime;;
         }

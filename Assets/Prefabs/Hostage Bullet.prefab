@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 752022130419958424}
   - component: {fileID: 404058810}
   m_Layer: 0
-  m_Name: 'Bullet '
+  m_Name: Hostage Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,4 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c254e350fab92ef4786a1b02558a2e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: -5

@@ -78,7 +78,7 @@ public class PlayerManager : MonoBehaviour
         IsNearPoliceman=null;
     }
     void ThrowTheHostage(){
-        Hostage.gameObject.SetActive(false);
+        Hostage.SendMessage("Throwing");
         Hostage=null;
     }
     void OnCollisionEnter( Collision other){
