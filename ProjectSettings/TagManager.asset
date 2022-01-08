@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Policeman
   - Bullet
+  - Hostage
   layers:
   - Default
   - TransparentFX

@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hosageprefab: {fileID: 6398734992060818514, guid: 4816b7a67ebba9242ac5cb7fb7a0513c, type: 3}
-  Hostage: {fileID: 0}
+  Hostage: 0
 --- !u!1 &976420428
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +874,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8773585, g: 0.7490655, b: 0.84825665, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.8632076, b: 0.91853786, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1035,7 +1035,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.5625, y: 1}
+    m_SensorSize: {x: 0.50054646, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1558,7 +1558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300243d67b921ba46bed774998ba92c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Min_Swipeing: 0
+  Min_Swipeing: 50
 --- !u!4 &2090041127
 Transform:
   m_ObjectHideFlags: 0
@@ -1593,6 +1593,10 @@ PrefabInstance:
     - target: {fileID: 1384599453673629444, guid: bcb055c93f4db094eb1bd40b4fc4593c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384599455023678888, guid: bcb055c93f4db094eb1bd40b4fc4593c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1494540468059599176, guid: bcb055c93f4db094eb1bd40b4fc4593c, type: 3}
       propertyPath: m_RootOrder

@@ -26,11 +26,13 @@ public class SwipeManager : MonoBehaviour{
             // up swipe
             if (EndPos.y>=StartPos.y+Min_Swipeing){
                 InputManager.isThrowingHostage=true;
+                //Debug.Log("Thouch Up");
             }
 
             // down swipe
             else if (EndPos.y<StartPos.y-Min_Swipeing){
                 InputManager.isHoldingHostage=true;
+                //Debug.Log("Thouch Down");
             }
         }
 
@@ -45,11 +47,13 @@ public class SwipeManager : MonoBehaviour{
             // up swipe
             if (EndPos.y>=StartPos.y+Min_Swipeing){
                 InputManager.isThrowingHostage=true;
+                //Debug.Log("Up");
             }
 
             // down swipe
             else if (EndPos.y<StartPos.y-Min_Swipeing){
                 InputManager.isHoldingHostage=true;
+                //Debug.Log("Down");
             }
         }
     } 

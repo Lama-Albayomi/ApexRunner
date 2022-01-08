@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour
     private Vector3 SecondTouch;
     public float Speed;
     private float DeltaX;
-    private GameObject Hostage;
+    public GameObject Hostage;
+    public GameObject IsNearPoliceman;
     private Animator animator;
     private bool Started;
     void Start(){
@@ -22,7 +23,24 @@ public class PlayerManager : MonoBehaviour
     void Update(){
         // dont start moving untill the game starts 
         if (!InputManager.isStart ) return;
+        MoveLeftAndRight();
+        
+        if (IsNearPoliceman!=null){
+            if (LevelManager.Instance.CanHoldAHostage() && Hostage == null){
+                HoldAHostage();
+            }
+        }
+        if(Hostage != null){
+            if (LevelManager.Instance.CanThrowHostage()){
+                ThrowTheHostage();
+            }
+        }
+        
+        
+        
+    }
 
+    void MoveLeftAndRight(){
         // stop idel animation and call runnin g animation only once;
         if(!Started){
             animator.SetInteger("State",1);
@@ -51,12 +69,17 @@ public class PlayerManager : MonoBehaviour
 
             //transform.position=new Vector3(transform.position.x+Delta.x /100,transform.position.y,transform.position.z);
         }
-
     }
     void HoldAHostage(){
-        Hostage=LevelManager.Instance.HoldHostage();
-        Instantiate(Hostage,HostageGrab.position,Quaternion.identity,HostageGrab);
-        //Hostage.transform.parent=this.transform;
+        Hostage = Instantiate(LevelManager.Instance.GetHostage()
+        ,HostageGrab.position,Quaternion.identity,HostageGrab);
+
+        IsNearPoliceman.gameObject.SetActive(false);
+        IsNearPoliceman=null;
+    }
+    void ThrowTheHostage(){
+        Hostage.gameObject.SetActive(false);
+        Hostage=null;
     }
     void OnCollisionEnter( Collision other){
         if (other.transform.CompareTag("Bullet")){
@@ -76,18 +99,16 @@ public class PlayerManager : MonoBehaviour
             Body.velocity=Vector3.zero;
         }
     }
-    void OnTriggerStay(Collider other){
+    void OnTriggerEnter(Collider other){
         if (other.CompareTag("Policeman")){
-            if (LevelManager.Instance.CanHostage(other.gameObject)){
-                HoldAHostage();
-                other.gameObject.SetActive(false);
-            }
-        }
+            IsNearPoliceman=other.gameObject;
+        } 
+    }
+    void OnTriggerStay(Collider other){
+        
     }
     void OnTriggerExit(Collider other){
-        if (other.CompareTag("Policeman")){
-            
-        }
+        
     }
 
 }
