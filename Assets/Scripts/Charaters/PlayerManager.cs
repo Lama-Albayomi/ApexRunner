@@ -55,20 +55,24 @@ public class PlayerManager : MonoBehaviour
             DeltaX=transform.position.x+Input.touches[0].deltaPosition.x /100;
         }
 
+         // PC
+        if (Input.GetMouseButtonDown(0)){
+            SecondTouch= Input.mousePosition;
+        }
+        if(Input.GetMouseButton(0)){
+            FirstTouch = Input.mousePosition;
+            DeltaX = transform.position.x+(FirstTouch.x-SecondTouch.x)/100;
+            SecondTouch = FirstTouch;
+
+        }
+
         if (DeltaX>2){
             DeltaX=2;
         }else if (DeltaX<-2){
             DeltaX=-2;
         }
         transform.position=new Vector3(DeltaX,transform.position.y,transform.position.z);
-        // PC
-        if(Input.GetMouseButton(0)){
-            FirstTouch = Input.mousePosition;
-            //Delta = FirstTouch-SecondTouch;
-            SecondTouch = FirstTouch;
-
-            //transform.position=new Vector3(transform.position.x+Delta.x /100,transform.position.y,transform.position.z);
-        }
+       
     }
     void HoldAHostage(){
         Hostage = Instantiate(LevelManager.Instance.GetHostage()
@@ -84,13 +88,18 @@ public class PlayerManager : MonoBehaviour
     void OnCollisionEnter( Collision other){
         if (other.transform.CompareTag("Bullet")){
             // set die animation
-            animator.SetInteger("State",2);
 
             other.gameObject.SetActive(false);
-            // endGame
-            LevelManager.Instance.PlayerDie();
+            if (Hostage==null){
+                animator.SetInteger("State",2);
 
-            Body.velocity=Vector3.zero;
+                // endGame
+                LevelManager.Instance.PlayerDie();
+                Body.velocity=Vector3.zero;
+            }else{
+
+            }
+            
         }
         else if (other.transform.CompareTag("Policeman")){
             
