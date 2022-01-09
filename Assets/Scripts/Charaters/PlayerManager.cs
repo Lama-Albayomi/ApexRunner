@@ -7,17 +7,22 @@ public class PlayerManager : MonoBehaviour
     public int Min_Draging; // Draging detection
     Rigidbody Body;
     public Transform HostageGrab;
-    private Vector3 FirstTouch;
-    private Vector3 SecondTouch;
-    public float Speed;
+    [SerializeField]
+    private float Speed;
+    private float InitialSpeed;
+
+    // Private
     private float DeltaX;
-    public GameObject Hostage;
-    public GameObject IsNearPoliceman;
+    private GameObject Hostage;
+    private GameObject IsNearPoliceman;
     private Animator animator;
     private bool Started;
+    private Vector3 FirstTouch;
+    private Vector3 SecondTouch;
     void Start(){
         Body= GetComponent<Rigidbody>();
         animator=GetComponent<Animator>();
+        InitialSpeed = Speed;
     }
 
     void Update(){
@@ -84,6 +89,12 @@ public class PlayerManager : MonoBehaviour
     void ThrowTheHostage(){
         Hostage.SendMessage("Throwing");
         Hostage=null;
+    }
+    public void SetSlowSpeed(float Speed){
+        this.Speed=Speed;
+    }
+    public void SetNormalSpeed(){
+        Speed=InitialSpeed;
     }
     void OnCollisionEnter( Collision other){
         if (other.transform.CompareTag("Bullet")){
