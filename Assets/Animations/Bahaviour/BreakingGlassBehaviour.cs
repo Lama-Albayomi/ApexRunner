@@ -13,14 +13,14 @@ public class BreakingGlassBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.position+=Vector3.forward*3*Time.deltaTime;
+        animator.transform.position+=Vector3.forward*5*Time.deltaTime;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
-        animator.transform.position+=Vector3.forward*1.7f;
+        //animator.transform.position+=Vector3.forward*5f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
