@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public Transform HostageGrab;
     [SerializeField]
     private float Speed;
+    private float OriginalSpeed;
     private float InitialSpeed;
 
     // Private
@@ -20,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     private Vector3 FirstTouch;
     private Vector3 SecondTouch;
     void Start(){
+        OriginalSpeed=Speed;
         Body= GetComponent<Rigidbody>();
         animator=GetComponent<Animator>();
         InitialSpeed = Speed;
@@ -93,6 +95,11 @@ public class PlayerManager : MonoBehaviour
     }
     public void SetSlowSpeed(float Speed){
         this.Speed=Speed;
+    }
+    public void GoBack(){
+        Speed =-Speed;
+    }public void GoForword(){
+        Speed = OriginalSpeed;
     }
     public void SetNormalSpeed(){
         Speed=InitialSpeed;
