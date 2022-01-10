@@ -13,7 +13,6 @@ public class FinishLevel : MonoBehaviour{
     }
     void OnTriggerExit(Collider other){
         if(other.transform.CompareTag("Player")){
-            InputManager.isStart=false;
             other.gameObject.SetActive(false);
             Animation.SetActive(true);
         }

@@ -22,9 +22,11 @@ public class LevelManager : MonoBehaviour
         }
     }
     public void PlayerDie(){
+        UiManager.instanse.ActiveTryAgainScreen();
+    }
+    public void PlayerEndlevel(){
         InputManager.isStart=false;
     }
-
     public bool CanHoldAHostage(){
         Time.timeScale=0.5f;
         if (InputManager.isHoldingHostage){

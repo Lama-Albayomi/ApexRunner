@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     void Update(){
         // dont start moving untill the game starts 
         if (!InputManager.isStart ) return;
+        
         MoveLeftAndRight();
         
         if (IsNearPoliceman!=null){
@@ -102,22 +103,26 @@ public class PlayerManager : MonoBehaviour
 
             other.gameObject.SetActive(false);
             if (Hostage==null){
-                animator.SetInteger("State",2);
-
-                // endGame
-                LevelManager.Instance.PlayerDie();
-                Body.velocity=Vector3.zero;
+                EndGame();
             }else{
 
             }
             
         }
         else if (other.transform.CompareTag("Policeman")){
-            
-            animator.SetInteger("State",2);
-            LevelManager.Instance.PlayerDie();
-            Body.velocity=Vector3.zero;
+            if (Hostage==null){
+                EndGame();
+            }else{
+
+            }
         }
+    }
+    void EndGame(){
+
+        animator.SetInteger("State",2);
+            // endGame
+        LevelManager.Instance.PlayerEndlevel();
+        Body.velocity=Vector3.zero;
     }
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Policeman")){
