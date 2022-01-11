@@ -772,6 +772,7 @@ MonoBehaviour:
   IsThrown: 0
   Bullets: 4
   timeBetweenShoots: 2
+  Ragdoll: {fileID: 9043105520747906903, guid: 57a52f28a9d21e942a1eaaae9a8566d5, type: 3}
 --- !u!136 &3204705730101113072
 CapsuleCollider:
   m_ObjectHideFlags: 0

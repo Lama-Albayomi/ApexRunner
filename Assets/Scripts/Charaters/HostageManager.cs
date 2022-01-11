@@ -14,6 +14,7 @@ public class HostageManager : MonoBehaviour
     private float Timer;
     
     private Vector3 ThrowDirection;
+    public GameObject Ragdoll;
 
     void Start(){
         animator = GetComponent<Animator>();
@@ -44,7 +45,8 @@ public class HostageManager : MonoBehaviour
     void Throwing(){
         // Random right or left direction
         int randomThrowingDirection= Random.Range(0,2);
-        Rigidbody body = gameObject.AddComponent<Rigidbody>();
+        //Rigidbody body = gameObject.AddComponent<Rigidbody>();
+        /*
         switch(randomThrowingDirection){
             case 0 :
             // right
@@ -55,10 +57,12 @@ public class HostageManager : MonoBehaviour
             ThrowDirection = new Vector3 (-1,1,0);
             break;
         }
+        */
         //transform.Translate(ThrowDirection*3,Space.World);
-        body.AddForce(ThrowDirection*4,ForceMode.Impulse);
-        animator.SetInteger("State",2);
+        GameObject doll= Instantiate(Ragdoll,transform.position,Quaternion.identity);
+        this.gameObject.SetActive(false);
         transform.parent=null;
         IsThrown=true;
+        
     }
 }

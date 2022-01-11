@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     public GameObject Hosageprefab;
+    public GameObject RagDollprefab;
     public bool Hostage= false;
 
     void Start(){
