@@ -97,8 +97,10 @@ public class PlayerManager : MonoBehaviour
         this.Speed=Speed;
     }
     public void GoBack(){
+        animator.SetInteger("State",3);
         Speed =-Speed;
     }public void GoForword(){
+        animator.SetInteger("State",1);
         Speed = OriginalSpeed;
     }
     public void SetNormalSpeed(){
@@ -125,14 +127,13 @@ public class PlayerManager : MonoBehaviour
         }
     }
     void EndGame(){
-
         animator.SetInteger("State",2);
             // endGame
         LevelManager.Instance.PlayerEndlevel();
         Body.velocity=Vector3.zero;
     }
     void OnTriggerEnter(Collider other){
-        if (other.CompareTag("Policeman")){
+        if (other.CompareTag("Policeman")&&IsNearPoliceman!=null){
             IsNearPoliceman=other.gameObject;
         } 
     }
@@ -140,7 +141,10 @@ public class PlayerManager : MonoBehaviour
         
     }
     void OnTriggerExit(Collider other){
-        
+        if (other.CompareTag("Policeman")){
+            IsNearPoliceman=null;
+            LevelManager.Instance.DidNotHoldTheHostage();
+        } 
     }
 
 }

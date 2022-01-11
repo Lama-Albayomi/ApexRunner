@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StreetObstical : MonoBehaviour{
-    public bool PlayerHit;
     PlayerManager player;
     void Start(){
         
-    }
 
+    }
     void Update(){
         
+
     }
-    public IEnumerator PushPlayer()
-    {
+    public IEnumerator PushPlayer(){
         player.GoBack();
         yield return new WaitForSeconds(0.7f);
         player.GoForword();
@@ -24,6 +23,7 @@ public class StreetObstical : MonoBehaviour{
             StartCoroutine(PushPlayer());
         }
     }
+
     /*
     void OnTriggerStay(Collider other){
         if (other.CompareTag("Player")){
@@ -35,5 +35,4 @@ public class StreetObstical : MonoBehaviour{
         }
     }
     */
-    
 }
