@@ -6,11 +6,12 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     public GameObject Hosageprefab;
-    public GameObject RagDollprefab;
+    public GameObject[] Levels;
     public bool Hostage= false;
 
     void Start(){
         Instance= this;
+        Instantiate(Levels[Random.Range(0,Levels.Length)]);
     }
 
     void Update(){

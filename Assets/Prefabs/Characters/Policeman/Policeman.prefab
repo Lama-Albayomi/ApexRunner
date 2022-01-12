@@ -999,7 +999,8 @@ MonoBehaviour:
   Bullet: {fileID: 7116220931309350048, guid: 63414f52b5269d2479e2248236ac605c, type: 3}
   ShootPostion: {fileID: 1390797794}
   Min_timeBetweenShoots: 2
-  Max_timeBetweenShoots: 10
+  Max_timeBetweenShoots: 5
+  RagDoll: {fileID: 9043105520747906903, guid: 57a52f28a9d21e942a1eaaae9a8566d5, type: 3}
 --- !u!1 &4181448807934622804
 GameObject:
   m_ObjectHideFlags: 0

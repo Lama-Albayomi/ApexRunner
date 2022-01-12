@@ -5,7 +5,6 @@ using UnityEngine;
 public class FinishLevel : MonoBehaviour{
     public GameObject Animation;
     void Start(){
-        Camera.main.backgroundColor=Random.ColorHSV();
     }
 
     void Update(){
@@ -13,6 +12,7 @@ public class FinishLevel : MonoBehaviour{
     }
     void OnTriggerExit(Collider other){
         if(other.transform.CompareTag("Player")){
+            InputManager.isStart =false;
             other.gameObject.SetActive(false);
             Animation.SetActive(true);
         }

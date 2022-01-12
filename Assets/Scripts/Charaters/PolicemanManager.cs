@@ -6,12 +6,12 @@ public class PolicemanManager : MonoBehaviour{
     public GameObject Bullet;
     public Transform ShootPostion;
     private Animator animator;
-    private bool IsDead = false;
 
     public float Min_timeBetweenShoots;
     public float Max_timeBetweenShoots;
     //private float timeBetweenShoots; // stats time
     private float Timer;
+    public GameObject RagDoll;
 
     void Start(){
         animator = GetComponent<Animator>();
@@ -22,7 +22,6 @@ public class PolicemanManager : MonoBehaviour{
     {
         if (!InputManager.isStart) return;
 
-        if(!IsDead){
             if(Timer<=0){
                 Shoot();
                 // reset timer
@@ -30,7 +29,7 @@ public class PolicemanManager : MonoBehaviour{
             }else{
                 Timer-=Time.deltaTime;;
             }
-        }
+        
     }
     void Shoot (){
         // Play shooting animation
@@ -43,10 +42,21 @@ public class PolicemanManager : MonoBehaviour{
     void OnTriggerEnter(Collider other){
         if (other.transform.CompareTag("Bullet")){
             // set die animation
-            IsDead=true;
-            animator.SetInteger("State",2);
+            //animator.SetInteger("State",2);
             other.gameObject.SetActive(false);
-            this.transform.tag="Untagged";
+            Die();
+            //this.transform.tag="Untagged";
         }
+        if (other.transform.CompareTag("Hostage")){
+            Die();
+        }
+    }
+    void Die(){
+        GameObject doll= Instantiate(RagDoll,transform.position,Quaternion.identity);
+            this.gameObject.SetActive(false);
+    }
+    void OnBecameInvisible()
+    {
+        gameObject.SetActive (false);
     }
 }

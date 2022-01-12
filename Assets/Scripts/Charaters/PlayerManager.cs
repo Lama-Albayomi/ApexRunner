@@ -133,7 +133,7 @@ public class PlayerManager : MonoBehaviour
         Body.velocity=Vector3.zero;
     }
     void OnTriggerEnter(Collider other){
-        if (other.CompareTag("Policeman")&&IsNearPoliceman==null){
+        if (other.CompareTag("Policeman")&&Hostage==null){
             IsNearPoliceman=other.gameObject;
         } 
     }

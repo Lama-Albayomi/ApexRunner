@@ -15,4 +15,9 @@ public class Bullet : MonoBehaviour
         transform.position=new Vector3(transform.position.x,transform.position.y,transform.position.z-speed *Time.deltaTime);
     }
     
+    void OnBecameInvisible()
+    {
+        gameObject.SetActive (false);
+    }
+    
 }
