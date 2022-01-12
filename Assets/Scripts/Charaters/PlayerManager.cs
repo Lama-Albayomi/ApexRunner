@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     private bool Started;
     private Vector3 FirstTouch;
     private Vector3 SecondTouch;
+    private bool PlayerIsDead=false;
     void Start(){
         OriginalSpeed=Speed;
         Body= GetComponent<Rigidbody>();
@@ -33,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         
         MoveLeftAndRight();
         
-        if (IsNearPoliceman!=null){
+        if (IsNearPoliceman!=null && !PlayerIsDead){
             if (LevelManager.Instance.CanHoldAHostage() && Hostage == null){
                 HoldAHostage();
             }
@@ -99,6 +100,9 @@ public class PlayerManager : MonoBehaviour
     public void GoBack(){
         animator.SetInteger("State",3);
         Speed =-Speed;
+        if (Hostage!=null){
+            ThrowTheHostage();
+        }
     }public void GoForword(){
         animator.SetInteger("State",1);
         Speed = OriginalSpeed;
@@ -127,6 +131,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
     void EndGame(){
+        PlayerIsDead=true;
         animator.SetInteger("State",2);
             // endGame
         LevelManager.Instance.PlayerEndlevel();

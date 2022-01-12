@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
         UiManager.instanse.ActiveTryAgainScreen();
     }
     public void PlayerEndlevel(){
+        Time.timeScale=1f;
         InputManager.isStart=false;
     }
     public bool CanHoldAHostage(){
