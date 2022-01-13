@@ -713,6 +713,9 @@ MonoBehaviour:
   Levels:
   - {fileID: 3116474175706055286, guid: 141b492729068374ca17ad2699e9f5a8, type: 3}
   - {fileID: 5661968326368711361, guid: dd2d592071eb38848b6f04840f0d6520, type: 3}
+  - {fileID: 2961130257290225346, guid: 252a2d2d9a61e0145b1cbbc4c0bf8890, type: 3}
+  - {fileID: 297695568445628637, guid: 364ff97013dc8954eb3c83b81f494d0a, type: 3}
+  - {fileID: 1013155423628465790, guid: b819c0c4399f4494dae3a22f0fb21211, type: 3}
   Hostage: 0
 --- !u!1 &976420428
 GameObject:
@@ -1442,7 +1445,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.5, y: 1}
+    m_SensorSize: {x: 0.50111854, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
